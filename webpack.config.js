@@ -24,8 +24,16 @@ module.exports = {
     rules: [
       {
         test: /\.(js|mjs)$/,
-        exclude: /core-js/,
+
+        exclude: [/\bcore-js\b/, /\bwebpack\b/, /@babel(?:\/|\\{1,2})runtime|core-js/],
         loader: "babel-loader",
+        options: {
+          babelrc: false,
+          configFile: path.resolve(__dirname, "babel.config.js"),
+          compact: false,
+          cacheDirectory: true,
+          sourceMaps: false,
+        },
       },
       {
         test: /\.svelte$/,
