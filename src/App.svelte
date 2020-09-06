@@ -2,10 +2,10 @@
 	export let name;
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
+<style global>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
 </style>
 
-<h1>Hello {name}!</h1>
+<h1 class="text-red-500">Hello {name}!</h1>
