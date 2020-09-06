@@ -1,10 +1,11 @@
-import App from './App.svelte';
+import "core-js";
+import App from "./App.svelte";
 
 const app = new App({
-	target: document.getElementById("root"),
-	props: {
-		name: 'world'
-	}
+  target: document.getElementById("root"),
+  props: {
+    name: "world",
+  },
 });
 
 window.app = app;
