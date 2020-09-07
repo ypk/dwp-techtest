@@ -5,7 +5,7 @@ module.exports = {
       {
         corejs: { version: 3 },
         useBuiltIns: "usage",
-        targets: ["last 2 versions", "ie >= 11"],
+        targets: "> 0.25%, not dead, IE 11",
       },
     ],
   ],

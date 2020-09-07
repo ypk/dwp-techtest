@@ -1,6 +1,5 @@
 <script>
 	export let name;
-	console.log(`${arr.join("-")}`)
 </script>
 
 <style global>
