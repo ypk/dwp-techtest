@@ -1,6 +1,8 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const sveltePreprocess = require("svelte-preprocess");
+const Dotenv = require('dotenv-webpack');
+
 const mode = process.env.NODE_ENV || "development";
 const prod = mode === "production";
 
@@ -66,9 +68,10 @@ module.exports = {
   },
   mode,
   plugins: [
+    new Dotenv(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-    }),
+    })
   ],
   devtool: prod ? false : "source-map",
 };

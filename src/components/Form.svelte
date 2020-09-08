@@ -1,5 +1,5 @@
 <script>
-  import GetDistanceFromCoords from "./Haversine";
+  import { GetDistanceFromCoords, GetUserData } from "../common";
 
   let fields = {
     distance: "",
@@ -11,13 +11,34 @@
 
   let formValid = false;
 
+  const fetchUsers = (distance) => {
+    const payload = {
+      distance,
+    };
+    let userData = GetUserData(payload);
+
+    userData.then((data) => {
+      data.forEach((user) => {
+        let userCoords = {
+          latitude: user.latitude,
+          longitude: user.longitude,
+        };
+        let distance = GetDistanceFromCoords(initialCoords, userCoords);
+        if (distance <= Number.parseInt(fields.distance)) {
+          console.log(user);
+        }
+      });
+    });
+  };
+
   async function handleSubmit(event) {
     formValid = true;
-
     if (fields.distance.trim().length === 0) {
       formValid = false;
       errors.distance = "This field is required";
     } else {
+      const distance = Number.parseFloat(fields.distance);
+      fetchUsers(distance);
       errors.distance = "";
     }
   }
@@ -27,27 +48,6 @@
     errors.distance = "";
     formValid = false;
   }
-
-  const getData = async () => {
-    const response = await window.fetch("./data.json");
-    const jsonData = await response.json();
-    return jsonData;
-  };
-
-  const initialCoords = { latitude: 51.509865, longitude: -0.118092 };
-
-  let userData = getData();
-
-  userData.then((data) => {
-    data.forEach((user) => {
-      let userCoords = {
-        latitude: user.latitude,
-        longitude: user.longitude,
-      };
-      let distance = GetDistanceFromCoords(initialCoords, userCoords);
-      distance < 50 && console.log(user);
-    });
-  });
 </script>
 
 <h1 class="mb-12 text-4xl">Distance Calculator</h1>

@@ -27,4 +27,4 @@ const GetDistanceFromCoords = (initialCoords, FinalCoords) => {
   return earthRadius * distance;
 };
 
-export default GetDistanceFromCoords;
+module.exports = GetDistanceFromCoords;

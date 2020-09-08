@@ -1,6 +1,5 @@
 <script>
-	import Form from './common/Form.svelte';
-	import Layout from './common/Layout.svelte';
+  import { Form, Layout } from "./index";
 </script>
 
 <style global>
@@ -10,5 +9,5 @@
 </style>
 
 <Layout>
-	<Form></Form>
+  <Form />
 </Layout>
