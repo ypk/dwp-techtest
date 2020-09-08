@@ -1,11 +1,14 @@
 <script>
-	export let name;
+	import Form from './common/Form.svelte';
+	import Layout from './common/Layout.svelte';
 </script>
 
 <style global>
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
 </style>
 
-<h1 class="text-red-500">Hello {name}!</h1>
+<Layout>
+	<Form></Form>
+</Layout>
