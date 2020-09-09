@@ -1,5 +1,5 @@
 <script>
-  import { Form, Layout } from "./index";
+  import { Form, Layout, Result } from "./index";
 </script>
 
 <style global>
@@ -10,4 +10,5 @@
 
 <Layout>
   <Form />
+  <Result/>
 </Layout>

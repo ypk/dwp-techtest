@@ -1,5 +1,5 @@
 <script>
-  import { GetDistanceFromCoords, GetUserData } from "../common";
+  import { responseData, GetDistanceFromCoords, GetUserData } from "../common";
 
   let fields = {
     distance: "",
@@ -15,31 +15,43 @@
     const payload = {
       distance,
     };
+
     let userData = GetUserData(payload);
 
     userData.then((data) => {
-      data.forEach((user) => {
-        let userCoords = {
-          latitude: user.latitude,
-          longitude: user.longitude,
+      responseData.update((d) => {
+        return {
+          data,
+          distance,
+          foundUsers: data.length > 0,
+          hasLoaded: true,
+          isLoading: false,
         };
-        let distance = GetDistanceFromCoords(initialCoords, userCoords);
-        if (distance <= Number.parseInt(fields.distance)) {
-          console.log(user);
-        }
       });
     });
   };
 
   async function handleSubmit(event) {
     formValid = true;
-    if (fields.distance.trim().length === 0) {
+    const { distance } = fields;
+    if (distance.trim().length === 0) {
       formValid = false;
       errors.distance = "This field is required";
     } else {
-      const distance = Number.parseFloat(fields.distance);
-      fetchUsers(distance);
-      errors.distance = "";
+      if (isNaN(distance)) {
+        formValid = false;
+        errors.distance = "Distance should be numbers only";
+      } else {
+        responseData.update((d) => {
+          return {
+            ...d,
+            isLoading: true,
+          };
+        });
+        const distance = Number.parseFloat(fields.distance);
+        fetchUsers(distance);
+        errors.distance = "";
+      }
     }
   }
 
@@ -47,6 +59,13 @@
     fields.distance = "";
     errors.distance = "";
     formValid = false;
+    responseData.set({
+      data: [],
+      foundUsers: false,
+      hasLoaded: false,
+      isLoading: false,
+      distance: 0,
+    });
   }
 </script>
 
@@ -66,17 +85,17 @@
         for="grid-password">
         <span class="">Distance</span>
         <input
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border
-            border-gray-200 rounded py-3 px-4 my-3 leading-tight
-            focus:outline-none focus:bg-white focus:border-gray-500 {errors.distance ? 'border-red-500' : ''}"
+          class="appearance-none block w-full bg-gray-100 text-gray-700 border
+            border-gray-500 rounded py-3 px-4 my-3 leading-tight
+            focus:outline-none focus:bg-white focus:border-gray-700 {errors.distance ? 'border-red-700' : ''}"
           id="distance"
           name="distance"
           type="text"
           bind:value={fields.distance}
-          placeholder="e.g.: 20" />
+          placeholder="Distance (in miles) e.g.: 20" />
       </label>
       {#if errors.distance}
-        <p class="text-red-500 text-xs italic">{errors.distance}</p>
+        <p class="text-red-700 text-xs italic">{errors.distance}</p>
       {/if}
     </div>
     <div class="w-full">
@@ -93,7 +112,7 @@
           hover:text-gray-500 text-sm py-1 px-2 rounded"
         aria-label="Reset Form"
         type="reset">
-        Reset Form
+        {$responseData.foundUsers && $responseData.hasLoaded ? 'Clear Results' : 'Reset Form'}
       </button>
     </div>
   </div>
