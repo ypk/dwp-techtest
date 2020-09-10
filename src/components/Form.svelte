@@ -71,16 +71,17 @@
 
 <h1 class="mb-12 text-4xl">Distance Calculator</h1>
 <div class="mb-12">
-  <p>This form fetches a list of users who live within a specified distance from London City.</p>
+  <p>
+    This form fetches a list of users who live within a specified distance from
+    London City.
+  </p>
   <p id="role-help">Please enter the radius in miles to begin the search</p>
 </div>
 <form
   id="distance-calculator"
   name="distance-calculator"
   on:submit|preventDefault={handleSubmit}
-  on:reset|preventDefault={handleReset}
-  method="POST"
-  action="/calculate">
+  on:reset|preventDefault={handleReset}>
   <div class="flex flex-wrap" novalidate>
     <div class="mb-12 w-full">
       <label
@@ -100,7 +101,9 @@
           placeholder="Distance (in miles) e.g.: 20" />
       </label>
       {#if errors.distance}
-        <p aria-live="polite" class="text-red-700 text-xs italic">{errors.distance}</p>
+        <p aria-live="polite" class="text-red-700 text-xs italic">
+          {errors.distance}
+        </p>
       {/if}
     </div>
     <div class="w-full">

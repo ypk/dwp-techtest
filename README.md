@@ -1,13 +1,6 @@
 # svelte app
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template-webpack svelte-app
-cd svelte-app
-```
+This repository uses [Svelte](https://svelte.dev).
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
@@ -17,48 +10,21 @@ cd svelte-app
 Install the dependencies...
 
 ```bash
-cd svelte-app
-npm install
+cd dwp-techtest
 ```
 
-...then start webpack:
+`npm install` or `yarn install`
 
-```bash
-npm run dev
-```
+...then start the server:
 
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
+`npm run dev` or `yarn dev`
 
+Navigate to [localhost:8080](http://localhost:8080). You should see your app running. 
 
-## Deploying to the web
+## Side note
 
-### With [now](https://zeit.co/now)
+This spins up two different servers, one for front end (running on port `8080`) and other for backend (running on port `8888`) 
 
-Install `now` if you haven't already:
+The backend servers purpose is to act as a proxy to overcome `cors`
 
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-now
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public
-```
+Due to the nature of the application, sadly, JavaScript in browser is mandatory for this to function.
