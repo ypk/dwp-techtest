@@ -1,17 +1,16 @@
 # svelte app
 
-This repository uses [Svelte](https://svelte.dev).
+This application uses [Svelte](https://svelte.dev) compiler.
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-
 ## Get started
 
-Install the dependencies...
+Navigate to project folder...
 
-```bash
-cd dwp-techtest
-```
+`cd dwp-techtest`
+
+...install the dependencies:
 
 `npm install` or `yarn install`
 
