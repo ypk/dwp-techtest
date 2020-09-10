@@ -2,7 +2,7 @@
   import { responseData } from "../common";
 </script>
 
-<div class="my-12">
+<div class="my-12" aria-live="polite" aria-busy={$responseData.isLoading ? "true" : "false"}>
   {#if $responseData.isLoading}
     <p>Loading...</p>
   {:else if !$responseData.foundUsers && $responseData.hasLoaded }
