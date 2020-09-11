@@ -44,9 +44,6 @@ router.post("/", requestRateLimiter, requestSpeedLimit, async function (req, res
       };
       await myCache.set("response", response);
     }
-
-    console.log(response);
-
     req.app.locals.responseContext = {
       response,
     };

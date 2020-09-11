@@ -56,7 +56,7 @@
         role="button"
         type="reset"
       >
-        Clear Results
+        Reset Form
       </button>
     </div>
   </div>
@@ -65,16 +65,28 @@
 <% if(response && response.result) { %>
   <div class="my-12 text-xl">
     <% if(response && response.result && Object.keys(response.result).length > 0) { %>
-      <p>Users who live <%= response.distance %> miles away from London are:</p>
-      <ul class="my-6">
-        <% for(var prop in response.result) { %>
-          <li id="<%=response.result[prop]['id']%>">
-            <%- response.result[prop]["first_name"]+" "+response.result[prop]["last_name"]+"&nbsp;  &mdash;&nbsp;<span class='italic'>"+response.result[prop]["email"]+"</span>" %>
+      <div class="mb-12">
+        <p>Users who live <%= response.distance %> miles away from London are:</p>
+        <ul class="my-6">
+          <% for(var prop in response.result) { %>
+            <li id="<%=response.result[prop]['id']%>">
+              <%- response.result[prop]["first_name"]+" "+response.result[prop]["last_name"]+"&nbsp;  &mdash;&nbsp;<span class='italic'>"+response.result[prop]["email"]+"</span>" %>
+  
+            </li>
+          <% } %>
+        </ul>
 
-          </li>
-        <% } %>
+      </div>
     <% } else {%>
       <p>Sorry, No data found for users living <%= response.distance %> mile(s) away from London</p>
     <% } %>
+    <a
+      class="flex-shrink-0 mt-6 font-bold bg-black hover:bg-black border-black text-lg hover:bg-gray-800 hover:border-gray-800 text-sm border-4 text-white py-1 px-4 rounded"
+      aria-label="Clear Results"
+      role="link"
+      href="/"
+    >
+      Clear Results
+    </a>
   </div>
 <%} %>
