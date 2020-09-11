@@ -1,9 +1,19 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const {GetDataFromAPI, DataHandler} = require("../helpers"); 
 
-router.post("/", function (req, res, next) {
+router.post("/", async function (req, res, next) {
   if (req.body && req.body.distance) {
-    res.send("i have it");
+    const { distance } = req.body;
+    const userData = await GetDataFromAPI();
+    const result = await DataHandler(req, userData, distance);  
+    req.app.locals.responseContext = {
+      response: {
+        distance,
+        result
+      }
+    };
+    res.redirect("/");
   } else {
     req.app.locals.errorsContext = {
       errors: {

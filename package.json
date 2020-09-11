@@ -19,7 +19,9 @@
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "autoprefixer": "^9.8.6",
     "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express-ejs-layouts": "^2.5.0",
+    "node-fetch": "^2.6.1",
     "postcss-cli": "^7.1.2",
     "tailwindcss": "^1.8.7"
   }

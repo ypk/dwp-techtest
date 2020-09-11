@@ -1,7 +1,8 @@
-let haversine = require ("./haversine");
-let requestHandler = require("./request-handler");
+let GetDistanceFromCoords = require("./haversine");
+let { GetDataFromAPI, DataHandler } = require("./request-handler");
 
 module.exports = {
-    haversine,
-    requestHandler
-}
+  GetDistanceFromCoords,
+  GetDataFromAPI,
+  DataHandler,
+};
