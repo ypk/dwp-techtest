@@ -31,6 +31,7 @@
     "whatwg-fetch": "^3.4.1"
   },
   "scripts": {
+    "start": "run-p build dev",
     "build": "cross-env NODE_ENV=production webpack",
     "run-dev": "webpack-dev-server --content-base public --open",
     "run-server": "nodemon src/server.js",
