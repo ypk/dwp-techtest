@@ -1,4 +1,4 @@
-
+const isProd = process.env.NODE_ENV === "production";
 const purgecss = require("@fullhuman/postcss-purgecss")({
     content: ["./views/**/*.ejs"],
     defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/]+/g) || [],
@@ -8,6 +8,6 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
     plugins: [
       require("tailwindcss"),
       require("autoprefixer"),
-   //   purgecss
+      ...(isProd ? [purgecss, require("cssnano")] : []),
     ],
   };
