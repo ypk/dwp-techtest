@@ -2,8 +2,8 @@
   Distance Calculator
 </h1>
 <div class="mb-6 text-lg md:mb-12 md:text-xl">
-  <p class="py-2">
-    This form fetches a list of users who live within a specified distance from
+  <p class="py-2 leading-loose">
+    This form fetches a list of users from a specific API and displays who live within a <br/>user-specified distance from
     <span class="text-white leading-none cursor-text font-semibold bg-gray-800 rounded px-2 py-1" title="<%-'Latitude: '+initialCoords.latitude+', Longitude: '+initialCoords.longitude %>">London City</span></p>
   </p>
   <p class="py-2" id="role-help">
@@ -63,7 +63,7 @@
 </form>
 
 <% if(response && response.result) { %>
-  <div class="my-12 text-xl">
+  <div class="my-12 border rounded-md shadow-md px-6 pt-3 pb-6 text-xl">
     <% if(response && response.result && Object.keys(response.result).length > 0) { %>
       <div class="mb-12">
         <p>Users who live <%= response.distance %> miles away from London are:</p>
@@ -78,10 +78,10 @@
 
       </div>
     <% } else {%>
-      <p>Sorry, No data found for users living <%= response.distance %> mile(s) away from London</p>
+      <p class="mt-2 mb-4">Sorry, we could not find any data for users living <%= response.distance %> mile(s) away from London</p>
     <% } %>
     <a
-      class="flex-shrink-0 mt-6 font-bold bg-black hover:bg-black border-black text-lg hover:bg-gray-800 hover:border-gray-800 text-sm border-4 text-white py-1 px-4 rounded"
+      class="py-1 px-4 font-bold bg-black hover:bg-black border-black text-lg hover:bg-gray-800 hover:border-gray-800 text-sm border-4 text-white rounded"
       aria-label="Clear Results"
       role="link"
       href="/"
