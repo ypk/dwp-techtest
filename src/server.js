@@ -5,7 +5,7 @@ const GetDistanceFromCoords = require("./common/Haversine");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.port || 8888;
+const port = process.env.SERVER_PORT || 8081;
 const apiUrl = `${process.env.API_URL}/users`;
 
 app.use(cors());
@@ -15,11 +15,6 @@ app.use(express.json());
 app.listen(port, () => {
   console.info(`Listening on port ${port}`);
 });
-
-const fetchTrackerSite = async () => {
-  const site = await fetch(apiUrl);
-  return site.data;
-};
 
 const serveError = (res, msg = "Hello?!") => {
   res.status(200).send(msg);

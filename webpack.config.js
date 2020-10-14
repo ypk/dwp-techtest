@@ -6,10 +6,16 @@ const Dotenv = require('dotenv-webpack');
 const mode = process.env.NODE_ENV || "development";
 const prod = mode === "production";
 
+const serverConfig = {
+  inline:true,
+  port: 8080
+};
+
 module.exports = {
   entry: {
     bundle: ["./src/main.js"],
   },
+  devServer: serverConfig,
   resolve: {
     alias: {
       svelte: path.resolve("node_modules", "svelte"),
@@ -73,5 +79,9 @@ module.exports = {
       filename: "[name].css",
     })
   ],
+  node: {
+    fs: 'empty',
+    child_process: 'empty',
+  },
   devtool: prod ? false : "source-map",
 };

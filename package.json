@@ -1,6 +1,16 @@
 {
   "name": "svelte-app",
   "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "run-p build dev",
+    "build": "cross-env NODE_ENV=production webpack",
+    "run-dev": "webpack-dev-server --content-base public --open",
+    "run-server": "nodemon src/server.js",
+    "dev": "run-p run-server run-dev"
+  },
   "dependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
@@ -29,12 +39,5 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1",
     "whatwg-fetch": "^3.4.1"
-  },
-  "scripts": {
-    "start": "run-p build dev",
-    "build": "cross-env NODE_ENV=production webpack",
-    "run-dev": "webpack-dev-server --content-base public --open",
-    "run-server": "nodemon src/server.js",
-    "dev": "run-p run-server run-dev"
   }
 }
